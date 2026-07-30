@@ -1,0 +1,40 @@
+  In reflection on this project and course, I was pleasantly surprised at just how 
+much is involved in ensuring reliable and effective systems in this realm of 
+embedded programming. Specifically to this application, tracking multiple, 
+competing tasks felt more real-world particularly with the thematic integration.
+  Although this was a rewarding and informative experience, there are areas of
+improvement with this application. With time constraints, I unfortunately had
+to limit the project to what I could effectively deliver without room for
+too much experimentation. If I had the opportunity to spend extra time with this
+portfolio project, I would implement more tasks. I would love to limit test
+between duplicates of tasks and possibly switching tasks to see where
+failures mostly occur and try remedying them. Having learned about more real-
+time systems concepts such as mutexes and priority inversion, I would love
+to incorporate these in the program, as well. Finally, I would love to try using
+a physical ESP32 and cross reference with the Wokwi simulation to see where
+discrepancies lie.
+  There were parts of the project that were more challenging than expected.
+In particular, I was tasked with recording the mean WCET values from over
+100 iterations of the program. This appears to be a regular mean calculation,
+however, the intricate values and volume of data were too large to be 
+confidently calculated without human error. Therefore, I handled this
+challenge by uploading my log to an AI tool. The tool efficiently and
+accurately provided the mean WCET values. This saved time for other,
+more important analysis tasks. I believe this use of AI for redundant or
+human-error-prone tasks are important for my future career since it will
+define employees who can more efficiently complete tasks and progress.
+  Finally, the most valuable lesson that I have learned from this project
+and all the interesting projects that I had the fortune of participating
+was the skill of technical presentation and justification. In my own
+experiences interviewing and working, being able to effectively
+communicate technical topics and ideas. The practice of not just
+learning the material but also being able to defend my decisions
+and resolve questions regarding my process have been incredibly
+helpful. As an engineer, you need to be able to defend and prove your
+results.
+  In conclusion, I am incredibly grateful for the opportunity to grow with this
+capstone project. I am also very appreciative of the guidance and wisdom
+from my professor, Dr. Mike Borowczak, and the teaching assistants
+Marlon Garcia Honores and Tayab Uddin Wara. Our class always had access to the
+information we needed, and they all facilitated an encouraging intellectual
+space for the students.
