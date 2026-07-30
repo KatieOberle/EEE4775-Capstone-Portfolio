@@ -1,0 +1,8 @@
+| Task | Function           | Period (ms) | WCET measured (µs) | WCET + 30% margin (µs) | Deadline | Priority | Core |
+|------|--------------------|-------------|--------------------|-----------------------|----------|----------|------|
+| A    | Tamper Poll        | 10          | 346                | 449.8                 | 10 ms    | 15       | 1    |
+| B    | Attestation Update | 20          | 776                | 1008.8                | 20 ms    | 10       | 1    |
+| C    | Audit Log          | 50          | 4982               | 6476.6                | 50 ms    | 5        | 1    |
+| D    | Counter Sync       | 100         | 10338              | 13439.4               | 100 ms   | 2        | 1    |
+| sem  | Semaphore path     |   N/A       |      N/A           |   N/A                 | N/A      | 12       | 1    |
+|notif | Notification path  |   N/A       |      N/A           |   N/A                 | N/A      | 12       | 1    |
