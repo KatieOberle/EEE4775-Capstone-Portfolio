@@ -1,0 +1,8 @@
+
+                            ----------------------------------------------------------------------
+                            |Core 1: Sem and notif paths (first idle, after Task A with loading) |
+                            |       Task A (blocks with TaskDelayUntil() under loading)          |
+Tamper                      |       Task B                                                       | --> ISR return
+ Event   --> ISR Starts --> |       Task C                                                       |
+Detected                    |       Task D                                                       |
+                            ----------------------------------------------------------------------
