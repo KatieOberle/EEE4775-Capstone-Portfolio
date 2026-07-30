@@ -1,0 +1,26 @@
+  This is a general overview of the Application 3 project that my capstone covers. 
+First and foremost, I chose this application out of the five assignments since I felt 
+that I had learned the most from this particular program.
+  The application was meant as a practice for threads and tasks concepts in real-time 
+systems. I first modified the skeleton code provided to match each of the four tasks to 
+my chosen theme of hardware security. Hardware security was my theme for the semester as 
+I felt the most drawn to it in regards to my career. As a computer engineering major, 
+hardware security programs in real-time systems are critical for ensuring that there is 
+no tampering or misuse of computer technology. A delayed or incorrect indication of 
+malicious activity could mean significant damage towards the customer and a loss of trust
+from your market.
+  To continue, I moved on to customizing the four tasks to match my chosen, theme-aligned 
+tasks including the following: tamper poll, attestation update, audit log, and counter sync. 
+The tamper poll task acts as a simulation of a tamper detection. Common tamper detection 
+methods include changes in voltage demand that are incongruent with the typical demands. For 
+academic purposes, we were encouraged to use a simulated effort. The attestation update and 
+audit log ensure proper recording of the tamper event flagged. The counter sync ensures proper 
+recording and counting of events with respect to the WCET and period. Finally, the semaphore
+and notification paths are used as signaling primitives during the process.
+  After customization, I carried out the program analyzing the log and recording necessary 
+information for engineering analysis, the task table, and concurrency diagram. These 
+organizational tools are industry standard and expected of engineers when justifying their 
+programs. Therefore, it was an especially important practice highlighted in this application.
+  The simulation proved mostly reliable, however, I would remain cautious with online 
+simulations versus physical simulations. Our board of choice was an ESP32 using C embedded 
+programming with FreeRTOS.
