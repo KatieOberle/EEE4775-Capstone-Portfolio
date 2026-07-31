@@ -1,8 +1,8 @@
-Wokwi Link
+# Wokwi Link
 __________
 https://wokwi.com/projects/467986775393981441 
 
-Project Overview
+# Project Overview
 _________________
   This is a general overview of the Application 3 project that my capstone covers. 
 First and foremost, I chose this application out of the five assignments since I felt 
@@ -31,13 +31,13 @@ programs. Therefore, it was an especially important practice highlighted in this
 simulations versus physical simulations. Our board of choice was an ESP32 using C embedded 
 programming with FreeRTOS.
 
-Demo
+# Demo
 _______
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wH4IpwB1tHM?si=XA4j3iYqw2-DhL9t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 If embedded video issues persist: https://www.youtube.com/watch?v=wH4IpwB1tHM
 
-Hazard Analysis
+# Hazard Analysis
 _______________
  While I was provided a robust skeleton for this project, there are
 certain aspects of the program that remain under consideration
@@ -54,31 +54,9 @@ for future improvement.
     to cross reference. However, it is preferred to choose one
     path to run for a real-life application.
 
-Original README Including Task Table and Concurrency Diagram
+# Original README Including Task Table and Concurrency Diagram
 _____________________________________________________________
-# App 3 scaffold — Interrupts & bottom-half
-
-All analysis/answers contained within this README file. I removed some
-context written here originally for space and clarity.
-
-## What you do
-
-1. **Theme rename** — `YOURTHEME` and customize the log messages
-2. **Run >= 50 presses, idle** (`WITH_LOAD 0`). Record `latency-max` for both paths.
-Sem: max = 2284
-Notif: max = 1928
-
-3. **Flip to `WITH_LOAD 1`**, rebuild, and run >= 50 presses again. Re-record both paths. Confirm the four load tasks are live (their heartbeat counters climb).
-Sem: max = 2768
-Notif: max = 31
-
-4. **Induce a failure** — pick ONE and document the symptom:
-   - Remove `portYIELD_FROM_ISR(higher_woken)` → notification is delivered, but the task doesn't run until the next tick
-   - Remove `IRAM_ATTR` → first-press latency on cold cache spikes 10-100x
-   - Replace `xSemaphoreGiveFromISR` with `xSemaphoreGive` → undefined behavior; system may crash
-5. **Defend in README** (see prompts below)
-
-## Engineering analysis (README, graded)
+## Engineering analysis
 
 1. **What's in your ISR? What's NOT?** List every line. Defend each (or remove it).
 What is not in the ISR: There are no block calls, mutex, direct latency calculations, or printf.
@@ -132,7 +110,7 @@ B/C/D are lower priority (below 12) which means they cannot delay the bottom hal
 I chose to test removing portYIELD_FROM_ISR(higher_woken), predicting issues with the immediate reschedule of the ISR. Upon removal, latency increases by a tick count and is evident in the new max value.
 Furthermore, I receive stack overflow errors whic hmake sense considering the boost in latency.
 
-Task Table
+# Task Table
 
 | Task | Function           | Period (ms) | WCET measured (µs) | WCET + 30% margin (µs) | Deadline | Priority | Core |
 |------|--------------------|------------:|-------------------:|----------------------:|---------:|---------:|-----:|
@@ -143,15 +121,15 @@ Task Table
 | sem  | Semaphore path     |   N/A       |      N/A           |   N/A                 | N/A      | 12       | 1    |
 |notif | Notification path  |   N/A       |      N/A           |   N/A                 | N/A      | 12       | 1    |
 
-Concurrency diagram
+# Concurrency diagram
 
-                            ----------------------------------------------------------------------
-                            |Core 1: Sem and notif paths (first idle, after Task A with loading) |
-                            |       Task A (blocks with TaskDelayUntil() under loading)          |
-Tamper                      |       Task B                                                       | --> ISR return
- Event   --> ISR Starts --> |       Task C                                                       |
-Detected                    |       Task D                                                       |
-                            ----------------------------------------------------------------------
+                            //////////////////////////////////////////////////////////////////////
+                            / Core 1: Sem and notif paths (first idle, after Task A with loading)/
+                            /       Task A (blocks with TaskDelayUntil() under loading)          /
+Tamper                      /       Task B                                                       / --> ISR return
+ Event   --> ISR Starts --> /       Task C                                                       /
+Detected                    /       Task D                                                       /
+                            /////////////////////////////////////////////////////////////////////
 
 
 Citations:
@@ -159,7 +137,7 @@ ChatGPT: Assignment Instruction Organization
 https://chatgpt.com/share/6a407c5a-50c0-83ea-adea-c18bb209f34f
 
 
-Final Reflection
+# Final Reflection
 ________________
   In reflection on this project and course, I was pleasantly surprised at just how 
 much is involved in ensuring reliable and effective systems in this realm of 
