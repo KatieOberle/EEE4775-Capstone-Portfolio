@@ -1,0 +1,14 @@
+  While I was provided a robust skeleton for this project, there are
+certain aspects of the program that remain under consideration
+for future improvement.
+(1) xSemaphoreGiveFromISR does not count button presses while
+    the notification path does save a count. This means that a
+    count recorded by the semaphore path might not match the
+    notification path.
+(2) When the WITH_LOAD variable is set, the tamper poll task runs
+    above the bottom tasks. Alongside with the fact that
+    portYIELD_FROM_ISR only reschedules tasks, it is not ensured
+    that the next task will run next.
+(3) Dual-running the semaphore and notification paths is useful
+    to cross reference. However, it is preferred to choose one
+    path to run for a real-life application.
