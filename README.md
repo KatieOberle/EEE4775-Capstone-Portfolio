@@ -1,3 +1,48 @@
+Project Overview
+  This is a general overview of the Application 3 project that my capstone covers. 
+First and foremost, I chose this application out of the five assignments since I felt 
+that I had learned the most from this particular program.
+  The application was meant as a practice for threads and tasks concepts in real-time 
+systems. I first modified the skeleton code provided to match each of the four tasks to 
+my chosen theme of hardware security. Hardware security was my theme for the semester as 
+I felt the most drawn to it in regards to my career. As a computer engineering major, 
+hardware security programs in real-time systems are critical for ensuring that there is 
+no tampering or misuse of computer technology. A delayed or incorrect indication of 
+malicious activity could mean significant damage towards the customer and a loss of trust
+from your market.
+  To continue, I moved on to customizing the four tasks to match my chosen, theme-aligned 
+tasks including the following: tamper poll, attestation update, audit log, and counter sync. 
+The tamper poll task acts as a simulation of a tamper detection. Common tamper detection 
+methods include changes in voltage demand that are incongruent with the typical demands. For 
+academic purposes, we were encouraged to use a simulated effort. The attestation update and 
+audit log ensure proper recording of the tamper event flagged. The counter sync ensures proper 
+recording and counting of events with respect to the WCET and period. Finally, the semaphore
+and notification paths are used as signaling primitives during the process.
+  After customization, I carried out the program analyzing the log and recording necessary 
+information for engineering analysis, the task table, and concurrency diagram. These 
+organizational tools are industry standard and expected of engineers when justifying their 
+programs. Therefore, it was an especially important practice highlighted in this application.
+  The simulation proved mostly reliable, however, I would remain cautious with online 
+simulations versus physical simulations. Our board of choice was an ESP32 using C embedded 
+programming with FreeRTOS.
+
+Hazard Analysis
+ While I was provided a robust skeleton for this project, there are
+certain aspects of the program that remain under consideration
+for future improvement.
+(1) xSemaphoreGiveFromISR does not count button presses while
+    the notification path does save a count. This means that a
+    count recorded by the semaphore path might not match the
+    notification path.
+(2) When the WITH_LOAD variable is set, the tamper poll task runs
+    above the bottom tasks. Alongside with the fact that
+    portYIELD_FROM_ISR only reschedules tasks, it is not ensured
+    that the next task will run next.
+(3) Dual-running the semaphore and notification paths is useful
+    to cross reference. However, it is preferred to choose one
+    path to run for a real-life application.
+
+Original README Including Task Table and Concurrency Diagram
 # App 3 scaffold — Interrupts & bottom-half
 
 All analysis/answers contained within this README file. I removed some
@@ -74,23 +119,6 @@ B/C/D are lower priority (below 12) which means they cannot delay the bottom hal
 I chose to test removing portYIELD_FROM_ISR(higher_woken), predicting issues with the immediate reschedule of the ISR. Upon removal, latency increases by a tick count and is evident in the new max value.
 Furthermore, I receive stack overflow errors whic hmake sense considering the boost in latency.
 
-## Common pitfalls
-
-- **Calling `printf` inside the ISR.** `printf` takes a UART mutex. Mutex from ISR = undefined behavior. The scaffold puts logging in the BOTTOM-HALF tasks for a reason.
-- **Forgetting `IRAM_ATTR`.** The first interrupt after a long quiescent period has to load the ISR from flash. That's ~10s of µs of cache fill on top of your nominal latency. With `IRAM_ATTR`, the ISR is in always-on internal RAM.
-- **Debounce too short.** A clean push-button bounces for 1–10 ms typically. Wokwi's simulated button is clean, but if you wire a real button, drop `DEBOUNCE_US` to something like 10000 µs.
-- **Editing the load-task bodies.** Under `WITH_LOAD 1` the four tasks are a fixture, not the assignment. You're timing your ISR path, so leave their bodies alone; tune only the `*_ITERS`/`*_N`/`*_LEN` knobs if you want a heavier or lighter load.
-- **Both bottom-half tasks racing on `latency_max_*`.** This is fine for the scaffold (32-bit reads are atomic, and the max-update is benign-racy). In production you'd use atomics or a mutex — that's App 6's lesson.
-
-## Setup in Wokwi
-
-Same shape as App 1. In a fresh Wokwi ESP-IDF project (`https://wokwi.com/projects/new/esp32-s3`):
-
-1. Replace `diagram.json`, `wokwi.toml`, and `main/CMakeLists.txt` with this folder's versions. (App 3 has no `sdkconfig.defaults` &mdash; uses IDF defaults.)
-2. Place this folder's `main.c` at `main/main.c` (delete Wokwi's `main/src/`), **or** leave `main/src/main.c` and edit `main/CMakeLists.txt` to use `SRCS "src/main.c"` + `INCLUDE_DIRS "src"`.
-3. Confirm `wokwi.toml`'s `firmware` / `elf` paths match `app3_interrupts` (the `project(...)` name in `CMakeLists.txt`).
-4. Click &#9654;.
-
 Task Table
 
 | Task | Function           | Period (ms) | WCET measured (µs) | WCET + 30% margin (µs) | Deadline | Priority | Core |
@@ -116,3 +144,46 @@ Detected                    |       Task D                                      
 Citations:
 ChatGPT: Assignment Instruction Organization
 https://chatgpt.com/share/6a407c5a-50c0-83ea-adea-c18bb209f34f
+
+
+Final Reflection
+  In reflection on this project and course, I was pleasantly surprised at just how 
+much is involved in ensuring reliable and effective systems in this realm of 
+embedded programming. Specifically to this application, tracking multiple, 
+competing tasks felt more real-world particularly with the thematic integration.
+  Although this was a rewarding and informative experience, there are areas of
+improvement with this application. With time constraints, I unfortunately had
+to limit the project to what I could effectively deliver without room for
+too much experimentation. If I had the opportunity to spend extra time with this
+portfolio project, I would implement more tasks. I would love to limit test
+between duplicates of tasks and possibly switching tasks to see where
+failures mostly occur and try remedying them. Having learned about more real-
+time systems concepts such as mutexes and priority inversion, I would love
+to incorporate these in the program, as well. Finally, I would love to try using
+a physical ESP32 and cross reference with the Wokwi simulation to see where
+discrepancies lie.
+  There were parts of the project that were more challenging than expected.
+In particular, I was tasked with recording the mean WCET values from over
+100 iterations of the program. This appears to be a regular mean calculation,
+however, the intricate values and volume of data were too large to be 
+confidently calculated without human error. Therefore, I handled this
+challenge by uploading my log to an AI tool. The tool efficiently and
+accurately provided the mean WCET values. This saved time for other,
+more important analysis tasks. I believe this use of AI for redundant or
+human-error-prone tasks are important for my future career since it will
+define employees who can more efficiently complete tasks and progress.
+  Finally, the most valuable lesson that I have learned from this project
+and all the interesting projects that I had the fortune of participating
+was the skill of technical presentation and justification. In my own
+experiences interviewing and working, being able to effectively
+communicate technical topics and ideas. The practice of not just
+learning the material but also being able to defend my decisions
+and resolve questions regarding my process have been incredibly
+helpful. As an engineer, you need to be able to defend and prove your
+results.
+  In conclusion, I am incredibly grateful for the opportunity to grow with this
+capstone project. I am also very appreciative of the guidance and wisdom
+from my professor, Dr. Mike Borowczak, and the teaching assistants
+Marlon Garcia Honores and Tayab Uddin Wara. Our class always had access to the
+information we needed, and they all facilitated an encouraging intellectual
+space for the students.
