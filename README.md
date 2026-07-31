@@ -1,4 +1,5 @@
 Project Overview
+_________________
   This is a general overview of the Application 3 project that my capstone covers. 
 First and foremost, I chose this application out of the five assignments since I felt 
 that I had learned the most from this particular program.
@@ -26,7 +27,14 @@ programs. Therefore, it was an especially important practice highlighted in this
 simulations versus physical simulations. Our board of choice was an ESP32 using C embedded 
 programming with FreeRTOS.
 
+Demo
+_______
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wH4IpwB1tHM?si=XA4j3iYqw2-DhL9t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+If embedded video issues persist: https://www.youtube.com/watch?v=wH4IpwB1tHM
+
 Hazard Analysis
+_______________
  While I was provided a robust skeleton for this project, there are
 certain aspects of the program that remain under consideration
 for future improvement.
@@ -43,6 +51,7 @@ for future improvement.
     path to run for a real-life application.
 
 Original README Including Task Table and Concurrency Diagram
+_____________________________________________________________
 # App 3 scaffold — Interrupts & bottom-half
 
 All analysis/answers contained within this README file. I removed some
@@ -147,6 +156,7 @@ https://chatgpt.com/share/6a407c5a-50c0-83ea-adea-c18bb209f34f
 
 
 Final Reflection
+________________
   In reflection on this project and course, I was pleasantly surprised at just how 
 much is involved in ensuring reliable and effective systems in this realm of 
 embedded programming. Specifically to this application, tracking multiple, 
